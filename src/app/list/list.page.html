@@ -8,9 +8,52 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">list</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="container">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-text> Product List per {{today_ind()}} </ion-text>
+        <ion-button [disabled]="is5daysYesterday" size="large" (click)="goYesterday()">
+          <ion-icon name="chevron-back"></ion-icon>
+        </ion-button>
+
+        <ion-button size="large" (click)="goResetDate()">
+          <ion-icon name="refresh-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button [disabled]="is5daysTomorrow" size="large" (click)="goTomorrow()">
+          <ion-icon name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-text> Product Name <b>{{product.productName}}</b> </ion-text>
+      </ion-item>
+    </ion-list>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-text> Product Price <b>Rp {{product.productPrice}}</b> </ion-text>
+      </ion-item>
+    </ion-list>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-text> Quantity </ion-text>
+
+        <ion-button size="medium" (click)="minus()">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <ion-text> {{qty}} </ion-text>
+        <ion-button size="medium" (click)="plus()">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-list lines="full">
+      <ion-item>
+        <ion-text> Total Amount <b>Rp {{quantity()}}</b> </ion-text>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
