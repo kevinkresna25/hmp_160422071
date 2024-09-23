@@ -8,5 +8,33 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <div id="container">
+    <ion-list lines="full">
+      <ion-item>
+        <ion-input (keyup)="cekPassword()" labelPlacement="floating" label="Masukkan Password :" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox justify="start" labelPlacement="end" [(ngModel)]="cekLenght">More than 6 characters</ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox justify="start" labelPlacement="end" [(ngModel)]="cekNumber">Include Number</ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox justify="start" labelPlacement="end" [(ngModel)]="cekSpecial">Include special character (!@#$%^&*)</ion-checkbox>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list lines="full">
+      <ion-item>
+        <ion-input
+          labelPlacement="floating"
+          label="Masukkan Photo URL:"
+          [(ngModel)]="linkPhoto"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-img [src]="linkPhoto"></ion-img>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingPage implements OnInit {
 
+  password: string = "";
+  cekLenght:boolean = false;
+  cekNumber:boolean = false;
+  cekSpecial:boolean = false;
+
+  linkPhoto: string = "";
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  cekPassword(){
+    this.cekLenght = this.password.length > 6;
+    this.cekNumber = /\d/.test(this.password);
+    this.cekSpecial = /[!@#$%^&*]/.test(this.password);
   }
 
 }

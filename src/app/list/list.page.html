@@ -11,8 +11,54 @@
   <div id="container">
     <ion-list lines="full">
       <ion-item>
+        <ion-input
+          (keyup)="checkValid()"
+          labelPlacement="floating"
+          label="Masukkan kode : "
+          [(ngModel)]="couponcode"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-text [ngStyle]="{'color':textColor}"
+          >Coupon code {{couponcode}} is {{strvalid}} you get {{discount}}%
+          discount</ion-text
+        >
+      </ion-item>
+      <!-- [*ngIf] jika nilai true maka memunculkan program dibawah -->
+      <ion-item>
+        <ion-img
+          *ngIf="strvalid=='valid'"
+          src="https://www.animatedimages.org/data/media/1103/animated-congratulation-image-0092.gif"
+        ></ion-img>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngFor="let book of books">
+      <ion-list-header>
+        <ion-label><h1>{{book.title}}</h1></ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Author : {{book.author}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Discount : {{book.discount}}%</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label [ngStyle]="{'text-decoration': getTextStyle(book)}">Price : ${{book.price.toFixed(2)}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label *ngIf="book.discount > 0">Price : ${{getDiscountedPrice(book).toFixed(2)}}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list lines="full">
+      <ion-item>
         <ion-text> Product List per {{today_ind()}} </ion-text>
-        <ion-button [disabled]="is5daysYesterday" size="large" (click)="goYesterday()">
+        <ion-button
+          [disabled]="is5daysYesterday"
+          size="large"
+          (click)="goYesterday()"
+        >
           <ion-icon name="chevron-back"></ion-icon>
         </ion-button>
 
@@ -20,7 +66,11 @@
           <ion-icon name="refresh-outline"></ion-icon>
         </ion-button>
 
-        <ion-button [disabled]="is5daysTomorrow" size="large" (click)="goTomorrow()">
+        <ion-button
+          [disabled]="is5daysTomorrow"
+          size="large"
+          (click)="goTomorrow()"
+        >
           <ion-icon name="chevron-forward"></ion-icon>
         </ion-button>
       </ion-item>
