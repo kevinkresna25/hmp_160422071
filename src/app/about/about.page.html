@@ -1,12 +1,28 @@
-<ion-header collapse="fade">
+<ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>about</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div id="frame">
+    <ion-avatar id="myAvatar">
+      <ion-img src="https://c.tenor.com/NVwxxoyoyGgAAAAd/tenor.gif"></ion-img>
+    </ion-avatar>
+  </div>
+
+  <ion-card class="agaknaik">
+    <ion-card-content class="tengah_atasberjarak">
+      Kresnayana Nanda Arifink<br />
+      Jurusan Informatika UBAYA<br />
+      Raya Kalirungkut Surabaya
+    </ion-card-content>
+  </ion-card>
   <div id="content">
-    <a routerLink="team">Team</a>
+    <a routerLink="team">Team</a><br>
     <a routerLink="history">History</a>
   </div>
 </ion-content>

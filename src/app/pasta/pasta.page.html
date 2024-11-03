@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>pasta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-searchbar placeholder="Takoyaki Kecap" [(ngModel)]="searchTerm" (ionInput)="searchItems()"></ion-searchbar>
+    <ion-button expand="block" color="primary" routerLink="/newpasta">
+      <ion-icon slot="start" name="add"></ion-icon>Add
+    </ion-button>
+    <ion-segment [(ngModel)]="jenistampilan">
+      <ion-segment-button value="accordion">
+        <ion-label>Accordion</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="card">
+        <ion-label>Card</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="grid">
+        <ion-label>Grid</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <ion-accordion-group  expand="inset" *ngIf="jenistampilan=='accordion'">
+    <ion-accordion  *ngFor="let pasta of pastas; let i = index">
+      <ion-item color="primary" slot="header">
+        <ion-label>{{pasta.name}}</ion-label>
+      </ion-item>
+      <div class="'ion-padding" slot="content">
+        <ion-list lines="full">
+          <ion-item color="medium" routerLink="/pastadetail/{{pasta.id}}">
+            <ion-img [src]="pasta.url"></ion-img>
+          </ion-item>
+          <ion-item>{{pasta.description}}</ion-item>
+          <ion-item>{{pasta.price}}</ion-item>
+          <ion-item>
+            <ion-badge *ngIf="pasta.spicy == true" color="danger">Spicy</ion-badge>
+            <ion-badge *ngIf="pasta.spicy == false" color="success">Non-Spicy</ion-badge>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <div id="card-group" *ngIf="jenistampilan=='card'">
+    <ion-card *ngFor="let pasta of pastas; let i = index">
+      <ion-item color="medium" routerLink="/pastadetail/{{pasta.id}}">
+        <ion-img [src]="pasta.url"></ion-img>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title>{{pasta.name}}</ion-card-title>
+        <ion-card-subtitle>{{pasta.price}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        {{pasta.description}}
+      </ion-card-content>
+      <ion-item>
+        <ion-badge slot="end" *ngIf="pasta.spicy == true" color="danger">Spicy</ion-badge>
+        <ion-badge slot="end" *ngIf="pasta.spicy == false" color="success">Non-Spicy</ion-badge>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <ion-grid *ngIf="jenistampilan=='grid'">
+    <ion-row *ngFor="let pastas2 of chunkArray(pastas, 2); let i = index">
+      <ion-col *ngFor="let pasta of pastas2; let i2 = index ">
+        <ion-list>
+          <ion-item color="medium" routerLink="/pastadetail/{{pasta.id}}">
+            <ion-img [src]="pasta.url"></ion-img>
+          </ion-item>
+          <ion-item color="primary" routerLink="/pastadetail/{{pasta.id}}">
+            {{pasta.name}}
+          </ion-item>
+          <ion-item>
+            <ion-badge *ngIf="pasta.spicy == true" color="danger">Spicy</ion-badge>
+            <ion-badge *ngIf="pasta.spicy == false" color="success">Non-Spicy</ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

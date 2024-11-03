@@ -17,6 +17,11 @@
         <ion-icon name="settings"></ion-icon>
         <ion-label>Settings</ion-label>
       </ion-tab-button>
+
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 
@@ -35,6 +40,12 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
+          <ion-item routerLink="/pasta">
+            <ion-icon name="pizza" slot="start"></ion-icon>
+            <ion-label>Pasta</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
           <ion-item routerLink="/list">
             <ion-icon name="list" slot="start"></ion-icon>
             <ion-label>List</ion-label>
@@ -44,6 +55,12 @@
           <ion-item routerLink="/setting">
             <ion-icon name="settings" slot="start"></ion-icon>
             <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/about">
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label>About</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
