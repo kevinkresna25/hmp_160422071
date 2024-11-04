@@ -15,10 +15,7 @@ export class PastaPage implements OnInit {
   constructor(private foodservice: FoodserviceService) {}
 
   ngOnInit() {
-    this.foodservice.pastaList().subscribe((data) => {
-      this.pastas = data;
-      this.allPastas = data;
-    });
+    this.refreshList()
   }
 
   searchItems() {
@@ -28,7 +25,7 @@ export class PastaPage implements OnInit {
       return;
     }
 
-    this.pastas = this.allPastas.filter((pasta) => 
+    this.pastas = this.allPastas.filter((pasta) =>
       pasta.name.toLowerCase().includes(term)
     );
   }
@@ -39,5 +36,15 @@ export class PastaPage implements OnInit {
       result.push(arr.slice(i, i + chunkSize));
     }
     return result;
+  }
+
+  refreshList() {
+    this.foodservice.pastaList().subscribe((data) => {
+      this.pastas = data;
+      this.allPastas = data;
+    });
+  }
+  ionViewWillEnter() {
+    this.refreshList()
   }
 }

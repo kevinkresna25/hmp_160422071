@@ -4,6 +4,12 @@
       <ion-icon name="chevron-back"></ion-icon>
     </ion-button>
     <ion-title>pastadetail</ion-title>
+    <ion-button color = primary slot="end" routerLink="/editpasta/{{ pasta.id }}">
+      <ion-icon name="pencil-outline"></ion-icon> Update
+    </ion-button>
+    <ion-button color = danger slot="end" (click)="deletePasta(pasta.id)">
+      <ion-icon name="trash-outline"></ion-icon> Delete
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
