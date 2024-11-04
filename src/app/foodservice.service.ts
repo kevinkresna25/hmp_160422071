@@ -67,4 +67,15 @@ export class FoodserviceService {
     const urlEncodedData = body.toString();
     return this.http.post(this.link + 'delete_pasta.php', urlEncodedData, { headers });
   }
+
+  addInstruction(p_id: number, step: number, instruction: string) {
+    const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    const body = new URLSearchParams();
+
+    body.set('id', p_id.toString());
+    body.set('step', step.toString());
+    body.set('instruction', instruction.toString());
+    const urlEncodedData = body.toString();
+    return this.http.post(this.link + 'new_instruction.php', urlEncodedData, { headers });
+  }
 }

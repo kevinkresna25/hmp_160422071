@@ -44,6 +44,7 @@ export class PastaPage implements OnInit {
       this.allPastas = data;
     });
   }
+  
   ionViewWillEnter() {
     this.refreshList()
   }
