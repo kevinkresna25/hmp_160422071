@@ -1,7 +1,7 @@
 <ion-app>
-  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <ion-router-outlet *ngIf="fullname" id="main-content"></ion-router-outlet>
 
-  <ion-tabs>
+  <ion-tabs *ngIf="fullname">
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="home">
         <ion-icon name="storefront"></ion-icon>
@@ -25,7 +25,7 @@
     </ion-tab-bar>
   </ion-tabs>
 
-  <ion-menu auto-hide="true" content-id="main-content">
+  <ion-menu *ngIf="fullname" auto-hide="true" content-id="main-content">
     <ion-header>
       <ion-toolbar>
         <ion-title>Menu List</ion-title>
@@ -65,5 +65,22 @@
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
+    <ion-item >
+      <ion-button (click)="logout()">Logout</ion-button>
+    </ion-item>
   </ion-menu>
+
+  <ion-content *ngIf="!fullname" class="ion-padding">
+    <img src="https://ubaya.xyz/hybrid/miftah/pasta.jpg" />
+    <ion-card>
+       <ion-item>
+          <ion-input [(ngModel)]="username" label="Username" labelPlacement="floating" />
+       </ion-item>
+       <ion-item>
+          <ion-input [(ngModel)]="password" type="password" label="Password" labelPlacement="floating" />
+       </ion-item>
+       <ion-button expand="block" (click)="login()">Login</ion-button>
+    </ion-card>
+  </ion-content>
+ 
 </ion-app>

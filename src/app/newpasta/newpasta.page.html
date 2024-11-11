@@ -20,9 +20,24 @@
 
         </ion-textarea>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-input labelPlacement="floating" [(ngModel)]="new_url" label="Image URL"></ion-input>
         <ion-img slot="end" [src]="new_url"></ion-img>
+      </ion-item> -->
+
+        <ion-item>
+          <ion-radio-group [(ngModel)]="imageType">
+            <ion-radio value="URL" justify="start" labelPlacement="end">URL</ion-radio>
+            <ion-radio value="Camera" justify="start" labelPlacement="end">Camera</ion-radio>
+          </ion-radio-group>
+      </ion-item>
+      <ion-item *ngIf="imageType=='Camera'">
+          <ion-button (click)="captureImage()">Capture Image</ion-button>
+          <ion-img [src]="base64"/>
+      </ion-item>
+      <ion-item *ngIf="imageType=='URL'">
+          <ion-input [(ngModel)]="new_url" label="Image URL" labelPlacement="floating" />
+          <ion-img [src]="new_url"/>
       </ion-item>
       <ion-item>
         <ion-select [(ngModel)]="new_price" label="Price" labelPlacement="floating">

@@ -78,4 +78,24 @@ export class FoodserviceService {
     const urlEncodedData = body.toString();
     return this.http.post(this.link + 'new_instruction.php', urlEncodedData, { headers });
   }
+
+  login(p_username:string, p_password:string){
+    const headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    const body = new URLSearchParams();
+    body.set('username', p_username.toString());
+    body.set('password', p_password.toString());
+    const urlEncodedData = body.toString();
+    return this.http.post(this.link + 'login.php', urlEncodedData, { headers });
+  }
+
+    uploadImage(p_name:string, p_base64:string)
+  {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const body = new URLSearchParams();
+    body.set('name', p_name.toString());
+    body.set('base64', p_base64.toString());
+    const urlEncodedData = body.toString();
+    return this.http.post(this.link + 'upload_image.php', urlEncodedData, { headers });
+  }
+
 }
