@@ -8,16 +8,37 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col>Name</ion-col>
-      <ion-col>Price</ion-col>
-      <ion-col>Num</ion-col>
+  <ion-grid *ngIf="items.length > 0" class="ion-text-center" size="3">
+    <!-- Header -->
+    <ion-row style="background-color: #0054e9">
+      <ion-col><strong>Name</strong></ion-col>
+      <ion-col><strong>Price</strong></ion-col>
+      <ion-col><strong>Quantity</strong></ion-col>
+      <ion-col><strong>Sub Total</strong></ion-col>
     </ion-row>
+
+    <!-- Isi -->
     <ion-row *ngFor="let item of items">
-      <ion-col>{{item.name}}</ion-col>
-      <ion-col>{{item.price}}</ion-col>
-      <ion-col>{{item.num}} <ion-button (click)="increaseNum(item.id)">+</ion-button></ion-col>
+      <ion-col>{{ item.name }}</ion-col>
+      <ion-col>{{ item.price | currency:'IDR' }}</ion-col>
+      <ion-col>
+        <ion-button size="small" color="danger" (click)="decreaseNum(item.id)">-</ion-button>
+        {{ item.num }}
+        <ion-button size="small" color="success" (click)="increaseNum(item.id)">+</ion-button>
+      </ion-col>
+      <ion-col>{{ item.price * item.num | currency:'IDR' }}</ion-col>
+    </ion-row>
+
+    <!-- Total -->
+    <ion-row style="background-color: #5f5f5f">
+      <ion-col size="6"><strong>Total :</strong></ion-col>
+      <!-- <ion-col></ion-col> -->
+      <ion-col><strong>{{ totalQty }} servings</strong></ion-col>
+      <ion-col><strong>{{ totalPrice | currency:'IDR' }}</strong></ion-col>
     </ion-row>
   </ion-grid>
+
+  <div *ngIf="items.length === 0" class="ion-text-center">
+    <h1>Oops! Nothing here</h1>
+  </div>
 </ion-content>

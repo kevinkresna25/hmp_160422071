@@ -58,4 +58,19 @@ export class DexieService extends Dexie {
       await this.myStore.update(itemId, { num: item.num });
     }
   }
+
+  async decreaseNum(itemId: number): Promise<void> {
+    const item = await this.myStore.get(itemId);
+  
+    if (item) {
+      // jika item lebih dari 1
+      if (item.num > 1) {
+        await this.myStore.update(itemId, { num: item.num - 1 });
+      } else {
+        await this.removeItem(itemId);
+      }
+    } else {
+      throw new Error(`Item with ID ${itemId} not found.`);
+    }
+  }
 }
