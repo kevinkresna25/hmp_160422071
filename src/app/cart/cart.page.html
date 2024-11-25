@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>Name</ion-col>
+      <ion-col>Price</ion-col>
+      <ion-col>Num</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of items">
+      <ion-col>{{item.name}}</ion-col>
+      <ion-col>{{item.price}}</ion-col>
+      <ion-col>{{item.num}} <ion-button (click)="increaseNum(item.id)">+</ion-button></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

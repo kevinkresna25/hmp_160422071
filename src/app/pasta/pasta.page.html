@@ -33,6 +33,11 @@
         <ion-label>{{ pasta.name }}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
+        <ion-item>
+          <ion-button (click)="addtocart(pasta.id,pasta.name,pasta.price,1)">
+            Add to Cart
+          </ion-button>
+        </ion-item>        
         <ion-list lines="full">
           <ion-item color="medium" [routerLink]="'/pastadetail/' + pasta.id">
             <ion-img [src]="pasta.url"></ion-img>

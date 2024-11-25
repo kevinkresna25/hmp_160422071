@@ -39,6 +39,10 @@ const routes: Routes = [
     path: 'editpasta/:index',
     loadChildren: () => import('./editpasta/editpasta.module').then( m => m.EditpastaPageModule)
   },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
+  },
 ];
 
 @NgModule({
